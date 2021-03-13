@@ -1,0 +1,31 @@
+{
+  "name": "@liqd-js/clone",
+  "description": "Object cloning functin",
+  "version": "1.0.0",
+  "author": "radixxko",
+  "license": "MIT",
+  "main": "lib/clone.js",
+  "homepage": "https://liqd-js.com/lib/clone",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "test": "nyc mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/liqd-js/clone.git"
+  },
+  "keywords": [
+    "clone",
+    "cloning",
+    "liqd-js",
+    "liqd"
+  ],
+  "devDependencies": {
+    "coveralls": "^3.0.4",
+    "mocha": "^8.3.2",
+    "nyc": "^14.1.1"
+  }
+}
