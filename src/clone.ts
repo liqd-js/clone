@@ -2,14 +2,14 @@
 
 //https://github.com/pvorb/clone/blob/master/clone.js
 
-function clonable( obj )
+function clonable( obj: any ): Boolean
 {
     return ( obj && typeof obj === 'object' );
 }
 
-function clone_object( obj, proto, nodes )
+function clone_object<T extends object>( obj: T, proto: boolean, nodes: Map<object, object> ): T
 {
-    if( nodes.has( obj )){ return nodes.get( obj )}
+    if( nodes.has( obj )){ return nodes.get( obj ) as T }
 
     let clone;
 
@@ -33,7 +33,7 @@ function clone_object( obj, proto, nodes )
     }
     else if( obj instanceof Map )
     {
-        clone = new Set();
+        clone = new Set<T>();
 
         for( let [ key, value ] of obj.entries())
         {
@@ -62,7 +62,7 @@ function clone_object( obj, proto, nodes )
     return clone;
 }
 
-const clone = module.exports = function clone( obj, proto = false )
+export default function clone<T>( value: T, proto = false ): T 
 {
-    return clonable( obj ) ? clone_object( obj, proto, new Map() ) : obj;
+    return ( clonable( value ) ? clone_object( value as object, proto, new Map() ) : value ) as T;
 }
