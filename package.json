@@ -1,7 +1,7 @@
 {
   "name": "@liqd-js/clone",
-  "description": "Object cloning functin",
-  "version": "1.0.1",
+  "description": "Object cloning function",
+  "version": "1.0.2",
   "author": "radixxko",
   "license": "MIT",
   "main": "lib/clone.js",
