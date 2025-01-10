@@ -33,7 +33,7 @@ function clone_object<T extends object>( obj: T, proto: boolean, nodes: Map<obje
     }
     else if( obj instanceof Map )
     {
-        clone = new Set<T>();
+        clone = new Map();
 
         for( let [ key, value ] of obj.entries())
         {
@@ -49,9 +49,9 @@ function clone_object<T extends object>( obj: T, proto: boolean, nodes: Map<obje
     {
         clone = proto ? Object.create( Object.getPrototypeOf( obj )) : new Object();
 
-        for( let property in obj )
+        for( let [ key, value ] of Object.entries( obj ))
         {
-            clone[property] = clonable( obj[property] ) ? clone_object( obj[property], proto, nodes ) : obj[property];
+            clone[key] = clonable( value ) ? clone_object( value, proto, nodes ) : value;
         }
 
         // TODO Object.getOwnPropertySymbols
