@@ -44,6 +44,18 @@ function clone_object<T extends object>( obj: T, proto: boolean, nodes: Map<obje
     {
         clone = new Date( obj.getTime() );
     }
+    else if( obj instanceof RegExp )
+    {
+        clone = new RegExp( obj.source, obj.flags );
+    }
+    else if( obj instanceof ArrayBuffer )
+    {
+        clone = obj.slice( 0 );
+    }
+    else if( obj instanceof DataView )
+    {
+        clone = new DataView( obj.buffer.slice( 0 ), obj.byteOffset, obj.byteLength );
+    }
     // TODO instanceof Promise
     else
     {
